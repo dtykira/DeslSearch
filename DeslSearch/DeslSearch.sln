@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DeslSearch", "DeslSearch\DeslSearch.vcxproj", "{C48BA4A9-E134-46E5-800B-5BA2D0D70598}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C48BA4A9-E134-46E5-800B-5BA2D0D70598}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C48BA4A9-E134-46E5-800B-5BA2D0D70598}.Debug|Win32.Build.0 = Debug|Win32
+		{C48BA4A9-E134-46E5-800B-5BA2D0D70598}.Release|Win32.ActiveCfg = Release|Win32
+		{C48BA4A9-E134-46E5-800B-5BA2D0D70598}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
