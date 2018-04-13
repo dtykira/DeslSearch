@@ -2,5 +2,7 @@
 #include "gloablv.h"
 #include "GenPrTable.h"
 
-//void Round_1(){
-	//for(int weight=0;weight<=8;weight--){
+
+bool isValid(__m128i tmp);
+void Round_1();
+void Round_2();
