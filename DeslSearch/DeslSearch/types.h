@@ -17,6 +17,9 @@
 #include <iomanip>
 #include <string>
 #include <bitset>
+#include <algorithm>
+
+using namespace std;
 
 #define BLOCK_SIZE_INBIT (64)
 #define ROUND_SIZE_INBIT (32)

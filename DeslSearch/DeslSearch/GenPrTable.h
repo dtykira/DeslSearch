@@ -21,7 +21,10 @@ extern ALIGNED_TYPE_(u16,8) SPE[SBOX_NUMBER][SBOX_INPUTS_NUMBER][MAX_OUTPUTDIFFS
 
 extern const u8 Wti[64];
 extern const u8 Wto[16];
-extern const u8 WtiForTravel[SBOX_INPUTS_NUMBER-1];
+extern u8 WtiForTravel[SBOX_INPUTS_NUMBER-1];
+
+extern si8 WtoForTravelNumber[SBOX_INPUTS_NUMBER];
+extern prType WtoForTravelProb[SBOX_INPUTS_NUMBER][MAX_OUTPUTDIFFS_NUMBER];
 
 extern u16 *sbox;
 void Substitution(u16* output,u16 input);

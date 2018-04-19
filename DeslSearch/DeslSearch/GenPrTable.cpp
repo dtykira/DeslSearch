@@ -1,4 +1,5 @@
 #include "GenPrTable.h"
+#include <algorithm>
 
 int PDT[SBOX_INPUTS_NUMBER][SBOX_OUTPUTS_NUMBER];
 int PDT_Number;
@@ -37,11 +38,19 @@ static const u8 Wto[16] = {0x0, 0x1, 0x2, 0x4, 0x8, 0x3, 0x5, 0x6, 0x9, 0xa, 0xc
 	0x1f, 0x2f, 0x37, 0x3b, 0x3d, 0x3e,//6
 	0x3f//1
 };*/
-static const u8 WtiForTravel[SBOX_INPUTS_NUMBER-1] = {
+u8 WtiForTravel[SBOX_INPUTS_NUMBER-1] = {
 	0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9 ,0xa, 0xb, 0xc, 0xd, 0xe, 0xf,
 	0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19 ,0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f,
 	0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29 ,0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f,
 	0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39 ,0x3a, 0x3b, 0x3c, 0x3d, 0x3e, 0x3f};
+
+si8 WtoForTravelNumber[SBOX_INPUTS_NUMBER];
+prType WtoForTravelProb[SBOX_INPUTS_NUMBER][MAX_OUTPUTDIFFS_NUMBER];
+
+int cmp(int x,int y)                    //排序是依据a数组进行的  
+{  
+    return PDT_MaxProb[x]<PDT_MaxProb[y];  
+}
 
 //替换函数S
 u16 Sbox[4][16] ={
@@ -213,6 +222,16 @@ void PDTStatistics(){
 			PDT_MaxProb[PDT_1_Non0Val[p][i]]=Prob[p];
 		}
 	}
+	sort(WtiForTravel,WtiForTravel+SBOX_INPUTS_NUMBER-1,cmp);
+	
+	for(u16 i=1;i<SBOX_INPUTS_NUMBER;i++){
+		WtoForTravelNumber[i]=PDT_0_Offset[i][PR_NUMBER-1][1];
+		for(u16 p=0x0;p<PR_NUMBER;p++){
+			for(u16 j=PDT_0_Offset[i][p][0];j<PDT_0_Offset[i][p][1];j++){
+				WtoForTravelProb[i][j]=Prob[p];
+			}
+		}
+	}
 
 #if (PRINT_PDTSTATISTICS)
 	FILE *fp=fopen("PDTStatistics_Table.txt","w");
@@ -225,8 +244,19 @@ void PDTStatistics(){
 	}
 
 	fprintf(fp,"\n");
+	for(u16 i=0;i<SBOX_INPUTS_NUMBER-1;i++){
+		fprintf(fp,"%02x:%f\n",WtiForTravel[i],PDT_MaxProb[WtiForTravel[i]]);
+	}
+	fprintf(fp,"\n");
 	for(u16 i=0;i<SBOX_INPUTS_NUMBER;i++){
 		fprintf(fp,"%02x:%f\n",i,PDT_MaxProb[i]);
+	}
+	fprintf(fp,"\n");
+	for(u16 i=1;i<SBOX_INPUTS_NUMBER;i++){
+		fprintf(fp,"%02x:%d---",i,WtoForTravelNumber[i]);
+		for(u16 j=0;j<WtoForTravelNumber[i];j++){
+			fprintf(fp,"%f ",WtoForTravelProb[i][j]);
+		}fprintf(fp,"\n");
 	}
 	fclose(fp);
 #endif
