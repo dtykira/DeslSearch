@@ -208,7 +208,7 @@ CHANGE0:
 	Round=3;
 	Bn[0]=0;
 	Bn[1]=2;
-	Bnc[Round-1]=Bn[Round-2]+5;
+	Bnc[Round-1]=Bn[Round-2]+6;
 	clock_t start,end;
 	start=clock();
 	Round_1();
