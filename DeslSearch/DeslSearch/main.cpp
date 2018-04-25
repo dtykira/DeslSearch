@@ -205,10 +205,13 @@ CHANGE0:
 
 	fclose(fww);
 
-	Round=3;
+	Round=6;
 	Bn[0]=0;
 	Bn[1]=2;
-	Bnc[Round-1]=Bn[Round-2]+6;
+	Bn[2]=4;
+	Bn[3]=9.022719;
+	Bn[4]=14.045439;
+	Bnc[Round-1]=Bn[Round-2]+9;
 	clock_t start,end;
 	start=clock();
 	Round_1();

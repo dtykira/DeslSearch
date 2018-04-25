@@ -14,7 +14,7 @@ si8 r_ai_best[ROUND_N][SBOX_NUMBER];
 prType r_pr_best[ROUND_N];
 
 prType Bnc[ROUND_N];
-prType Bn[ROUND_N]={0,2};
+prType Bn[ROUND_N]={0,2,4};
 
 int Round;
 

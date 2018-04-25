@@ -184,7 +184,7 @@ void Storage(){
 
 #if (PRINT_STORAGE)
 	FILE *fp=fopen("Storage_Table.txt","w");
-	si8 si=0;
+	si8 si=7;
 	for(u16 i=0x0;i<SBOX_INPUTS_NUMBER;i++){
 		fprintf(fp,"*/0x%02x*/\t",i);
 		for(u16 p=0x0;p<PR_NUMBER;p++){
